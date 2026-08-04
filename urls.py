@@ -1,25 +1,13 @@
-"""
-URL configuration for gestion_des_salles project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/6.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path('',include('reservations.urls')),
-
+    path('', views.salle_list, name='salle_list'),
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    path('reservation/ajouter/', views.reservation_create, name='reservation_create'),
+    path('mes_reservations/', views.mes_reservations, name='mes_reservations'),
+    path('reservation/modifier/<int:id>/', views.reservation_update, name='reservation_update'),
+    path('reservation/supprimer/<int:id>/', views.reservation_delete, name='reservation_delete'),
+    path('planning/', views.planning, name='planning'),
 ]
